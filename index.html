@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GiftNest - Personalised Gifting</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        :root {
+            --bg: #fdf8f5;
+            --card: #ffffff;
+            --text: #3d242a;
+            --sub: #7d6168;
+            --primary: #6d3849;
+            --border: #eedcd4;
+            --art-festive: #fbe6d4;
+            --art-green: #e3efe6;
+            --art-wellness: #fce8ec;
+            --art-label: #4a2531;
+        }
+
+        [data-theme="dark"] {
+            --bg: #1e1115;
+            --card: #2c191f;
+            --text: #f9ebe6;
+            --sub: #c4a7af;
+            --primary: #d9829b;
+            --border: #472b34;
+            --art-festive: #3d2424;
+            --art-green: #223329;
+            --art-wellness: #3b212d;
+            --art-label: #f9ebe6;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            transition: 0.3s;
+        }
+
+        nav {
+            background: var(--card);
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav h1 {
+            color: var(--primary);
+            font-size: 26px;
+        }
+
+        nav p {
+            color: var(--sub);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .theme-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .theme-buttons button {
+            background: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .theme-buttons button:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .welcome {
+            background: var(--primary);
+            color: white;
+            padding: 35px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .welcome h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .welcome p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            margin-bottom: 18px;
+        }
+
+        .gifts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .gift {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .gift:hover {
+            transform: translateY(-5px);
+        }
+
+        .cover {
+            background: var(--bg);
+            border: 1px dashed var(--border);
+            border-radius: 10px;
+            padding: 24px 12px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .cover.cover-festive {
+            background: var(--art-festive);
+        }
+
+        .cover.cover-green {
+            background: var(--art-green);
+        }
+
+        .cover.cover-wellness {
+            background: var(--art-wellness);
+        }
+
+        .cover .emoji {
+            font-size: 46px;
+            line-height: 1;
+        }
+
+        .cover .art-label {
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--art-label);
+        }
+
+        .gift h3 {
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+
+        .gift p {
+            color: var(--sub);
+            font-size: 13px;
+        }
+
+        .gift-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--sub);
+            padding: 25px;
+            font-size: 13px;
+        }
+
+        @media(max-width: 600px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .gifts {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome h2 {
+                font-size: 23px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav>
+
+        <div>
+            <h1>🎁 GiftNest</h1>
+            <p>Your personal curated gift store</p>
+        </div>
+
+        <div class="theme-buttons">
+
+            <button type="button" onclick="setTheme('light')">
+                ☀ Light
+            </button>
+
+            <button type="button" onclick="setTheme('dark')">
+                🌙 Dark
+            </button>
+
+        </div>
+
+    </nav>
+
+    <div class="container">
+
+        <div class="welcome">
+
+            <h2>A World of Thoughtful Gifts Awaits!</h2>
+
+            <p>
+                Discover curated hampers, explore personalised keepsakes
+                and browse gifts in your preferred theme.
+                Make your gifting experience effortless
+                with personalised display settings.
+            </p>
+
+        </div>
+
+        <h2 class="section-title">Featured Gifts</h2>
+
+        <div class="gifts">
+
+            <div class="gift">
+
+                <div class="cover cover-festive">
+                    <span class="emoji">🎀</span>
+                    <span class="art-label">Festive Hamper</span>
+                </div>
+
+                <h3>Festive Sweet Hamper</h3>
+
+                <p>Artisanal treats &amp; dry fruits, wrapped with care.</p>
+
+                <button type="button" class="gift-btn" onclick="alert('Opening Festive Sweet Hamper!')">
+                    Explore Gift
+                </button>
+
+            </div>
+
+            <div class="gift">
+
+                <div class="cover cover-green">
+                    <span class="emoji">🌿</span>
+                    <span class="art-label">Green Gifting</span>
+                </div>
+
+                <h3>Mini Desk Succulent</h3>
+
+                <p>A refreshing green keepsake for any workspace.</p>
+
+                <button type="button" class="gift-btn" onclick="alert('Opening Mini Desk Succulent!')">
+                    Explore Gift
+                </button>
+
+            </div>
+
+            <div class="gift">
+
+                <div class="cover cover-wellness">
+                    <span class="emoji">🕯️</span>
+                    <span class="art-label">Home &amp; Wellness</span>
+                </div>
+
+                <h3>Aroma Soy Candle Set</h3>
+
+                <p>Hand-poured scents for warmth and relaxation.</p>
+
+                <button type="button" class="gift-btn" onclick="alert('Opening Aroma Soy Candle Set!')">
+                    Explore Gift
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        GiftNest © 2026 | Wrap. Share. Celebrate.
+    </footer>
+
+    <script>
+
+        let systemTheme = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+        );
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute(
+                "data-theme", theme
+            );
+
+            localStorage.setItem("theme", theme);
+        }
+
+        let savedTheme = localStorage.getItem("theme");
+
+        if (savedTheme) {
+            setTheme(savedTheme);
+        } else {
+            if (systemTheme.matches) {
+                setTheme("dark");
+            } else {
+                setTheme("light");
+            }
+        }
+
+        systemTheme.addEventListener("change", function(event) {
+            if (!localStorage.getItem("theme")) {
+                if (event.matches) {
+                    setTheme("dark");
+                } else {
+                    setTheme("light");
+                }
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
